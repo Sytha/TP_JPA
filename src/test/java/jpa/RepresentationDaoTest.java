@@ -2,6 +2,8 @@ package jpa;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -59,10 +61,10 @@ public class RepresentationDaoTest {
 	}
 	
 	@Test
-	public void testFindByCriteriasTrue(){
-		Date dateDeb=new Date();
-		dateDeb.
-		List<Representation> representations = dao.findByCriteria(new Date("2013-02-28"), new Date("2013-03-05"), "Indochine");
+	public void testFindByCriteriasTrue() throws ParseException{
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		List<Representation> representations = null;
+		representations = dao.findByCriteria(sdf.parse("28-05-2000"), sdf.parse("05-05-2100"), "Indochine");
 		assertEquals(3, representations.size());
 	}
 }

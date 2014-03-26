@@ -24,16 +24,18 @@ public class RepresentationDao {
 	
 	public List<Representation> findByCriteria(Date dateDeb, Date dateFin, String artiste){
 		String jpql = "SELECT r "
-				+ "FROM representation r "
-				+ "WHERE r.date_representation <= :dateDeb "
-				+ "AND r.date_representation >= : dateFin "
-//				+ "AND r.spectacle.titre = :titre"
+				+ "FROM Representation r "
+				+ "JOIN r.spectacle sp "
+				+ "WHERE r.dateRepresentation >= :dateDeb "
+				+ "AND r.dateRepresentation <= :dateFin "
+				+ "AND sp.artiste LIKE '%:artiste%'"
 				;
 		TypedQuery<Representation> query = em.createQuery(jpql, Representation.class); 
-		query.setParameter(1, dateDeb);
-		query.setParameter(1, dateFin);
-		List<Representation> representations = query.getResultList();
-		return representations;
+		query.setParameter("dateDeb", dateDeb);
+		query.setParameter("dateFin", dateFin);
+		query.setParameter("artiste", artiste);
+		return query.getResultList();
+		
 	}
 	
 	public void persist(Representation representation){

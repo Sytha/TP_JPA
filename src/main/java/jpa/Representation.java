@@ -13,15 +13,13 @@ public class Representation {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="representation_seq")
 	private Long id;
 	
-	@Column
+	@Column(name = "DATE_REPRESENTATION")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date date_representation;
+	private Date dateRepresentation;
 	
-	@Column
-	private String artiste;
 	
 	@ManyToOne
-	@JoinColumn(name = "ID")
+	@JoinColumn(name = "ID_SPECTACLE")
 	private Spectacle spectacle;
 
 	public Long getId() {
@@ -33,20 +31,14 @@ public class Representation {
 	}
 
 	public Date getDate_representation() {
-		return date_representation;
+		return dateRepresentation;
 	}
 
-	public void setDate_representation(Date date_representation) {
-		this.date_representation = date_representation;
+	public void setDate_representation(Date dateRepresentation) {
+		this.dateRepresentation = dateRepresentation;
 	}
 
-	public String getArtiste() {
-		return artiste;
-	}
 
-	public void setArtiste(String artiste) {
-		this.artiste = artiste;
-	}
 
 	public Spectacle getSpectacle() {
 		return spectacle;
