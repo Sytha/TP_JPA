@@ -1,0 +1,17 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+repositories {
+    mavenCentral()
+}
+
+def hibernateEntityManagerVersion = '4.3.0.Final'
+def postgresDriverDependency = 'org.postgresql:postgresql:9.2-1003-jdbc4'
+
+dependencies {
+    compile "org.hibernate:hibernate-entitymanager:4.3.0.Final"
+    compile "org.hsqldb:hsqldb:2.2.9"
+    
+    testCompile "junit:junit:4.11"
+    testCompile "com.ninja-squad:DbSetup:1.2.0"
+}
